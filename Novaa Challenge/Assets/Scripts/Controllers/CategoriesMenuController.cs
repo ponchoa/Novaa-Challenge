@@ -39,19 +39,27 @@ public class CategoriesMenuController : MonoBehaviour
             UIButton button = buttonGO.GetComponent<UIButton>();
             button.ButtonText = categories[i].categoryName;
             //When a button is clicked, we set the game to the corresponding category
-            buttonGO.GetComponent<Button>().onClick.AddListener(() => { SetCurrentCategory(categories[i]); });
+            buttonGO.GetComponent<Button>().onClick.AddListener(() => { SetCurrentCategory(button.ButtonText); });
         }
     }
 
     /// <summary>
     /// The listener that should be set on each button to set up the category container and load the next screen.
     /// </summary>
-    /// <param name="category">The category that will be saved to correctly set up the quiz</param>
-    public void SetCurrentCategory(CategoryScriptableObject category)
+    /// <param name="categoryName">The name of the category that will be saved to correctly set up the quiz.</param>
+    public void SetCurrentCategory(string categoryName)
     {
-        //We set the CurrentCategory container
-        CurrentCategory.Instance.currentCategory = category;
-        CurrentCategory.Instance.isAvailable = true;
+        for (int i = 0; i < categories.Length; i++)
+        {
+            if (categoryName == categories[i].categoryName)
+            {
+                //We set the CurrentCategory container
+                CurrentCategory.Instance.currentCategory = categories[i];
+                CurrentCategory.Instance.isAvailable = true;
+                break;
+            }
+        }
+
 
         //Then we load the next screen
         if (SceneLoaderController.Instance.LoadScene(SceneType.QUIZ))

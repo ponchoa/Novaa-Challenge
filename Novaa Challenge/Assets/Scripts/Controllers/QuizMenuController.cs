@@ -21,6 +21,13 @@ public class QuizMenuController : MonoBehaviour
     [Tooltip("The object that will block the raycast when enabled")]
     Transform raycastBlocker;
 
+    [SerializeField]
+    [Tooltip("The duration of the button feedback animation in seconds (set to zero to skip animations)")]
+    float buttonAnimDuration = .4f;
+    [SerializeField]
+    [Tooltip("The wait time in seconds after the animation is done before loading the next question or the results screen")]
+    float waitBetweenQuestions = 1.6f;
+
     /// <summary>
     /// The current question to display.
     /// </summary>
@@ -29,12 +36,33 @@ public class QuizMenuController : MonoBehaviour
     /// The index of the next question in the category array.
     /// </summary>
     int questionIndex = 0;
+    /// <summary>
+    /// The animations of each button in the same order, cached to avoid unnessecary GetComponent calls
+    /// </summary>
+    AnswerButtonAnimation[] buttonsAnims;
 
     private void Start()
     {
         if (!CurrentCategory.Instance.isAvailable)
         {
             Debug.LogWarning("QuizMenuController (" + name + ") : The current category was set as unavailable. Did you load this scene at the correct time?");
+        }
+        if (buttonAnswersArray.Length <= 0)
+        {
+            Debug.LogWarning("QuizMenuController (" + name + ") : No reference to the answer buttons.");
+        }
+        else
+        {
+            //We fill the buttonsAnim array with the component of each button in the same order.
+            buttonsAnims = new AnswerButtonAnimation[buttonAnswersArray.Length];
+            for (int i = 0; i < buttonAnswersArray.Length; i++)
+            {
+                buttonsAnims[i] = buttonAnswersArray[i].GetComponent<AnswerButtonAnimation>();
+                if (buttonsAnims[i] is null)
+                {
+                    Debug.LogWarning("QuizMenuController (" + name + ") : No AnswerButtonAnimation component attached to " + buttonAnswersArray[i].name + ".");
+                }
+            }
         }
 
         //Right now the blocker isn't used, but it will be if there are some animations
@@ -73,11 +101,25 @@ public class QuizMenuController : MonoBehaviour
             button.onClick.RemoveAllListeners();
             button.gameObject.SetActive(false);
         }
-        for (int i = 0; i < Mathf.Min(5, question.answersArray.Length); i++) //Then we only set those needed, we also can't see more than 5 answers
+        for (int i = 0; i < Mathf.Min(5, Mathf.Min(buttonAnswersArray.Length, question.answersArray.Length)); i++) //Then we only set those needed, we also can't see more than 5 answers
         {
+            //We set up the animation if it is possible and the duration is positive
+            if (buttonsAnims[i] != null && buttonAnimDuration > 0f)
+            {
+                buttonsAnims[i].ResetColor();
+                if (0 <= question.correctAnswerIndex && question.correctAnswerIndex < buttonsAnims.Length)
+                {
+                    AnswerButtonAnimation buttonAnim = buttonsAnims[i];
+                    //We add the listener
+                    buttonAnswersArray[i].onClick.AddListener(() => { buttonAnim.OnButtonClick(buttonAnimDuration); });
+                    //We specify the correct answer to each button (See: the summary of correctAnswer)
+                    buttonsAnims[i].correctAnswer = buttonsAnims[question.correctAnswerIndex];
+                }
+            }
+
             buttonAnswersArray[i].gameObject.SetActive(true);
             buttonAnswersArray[i].GetComponent<UIButton>().ButtonText = question.answersArray[i];
-            //We set the correct listener depending on if the answer is the correct one.
+            //We set the correct listeners depending on if the answer is the correct one.
             if (i == question.correctAnswerIndex)
                 buttonAnswersArray[i].onClick.AddListener(OnCorrectAnswerClick);
             else
@@ -102,15 +144,21 @@ public class QuizMenuController : MonoBehaviour
     void OnCorrectAnswerClick()
     {
         CurrentCategory.Instance.correctAnswers++;
-        //TODO: Animation
-        LoadNextQuestion();
+        StartCoroutine(WaitBeforeNextQuestion());
     }
     /// <summary>
     /// If the user chose the wrong answer.
     /// </summary>
     void OnWrongAnswerClick()
     {
-        //TODO: Animation
+        StartCoroutine(WaitBeforeNextQuestion());
+    }
+
+    IEnumerator WaitBeforeNextQuestion()
+    {
+        raycastBlocker.gameObject.SetActive(true);
+        yield return new WaitForSeconds(waitBetweenQuestions);
+        raycastBlocker.gameObject.SetActive(false);
         LoadNextQuestion();
     }
 }
