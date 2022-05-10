@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This is a Singleton class that stores the currently playing category for multiple references
+/// </summary>
 public class CurrentCategory : MonoBehaviour
 {
     #region Singleton

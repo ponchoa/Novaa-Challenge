@@ -15,18 +15,26 @@ public class ResultsMenuController : MonoBehaviour
     /// <summary>
     /// A simple string used to store the color of the results amount text.
     /// </summary>
-    string colorText = "FF0000";
+    string colorText;
 
     private void Start()
+    {
+        CheckCategoryState();
+
+        DisplayResults();
+    }
+
+    #region Warnings
+    void CheckCategoryState()
     {
         if (!CurrentCategory.Instance.isAvailable)
         {
             Debug.LogWarning("ResultsMenuController (" + name + ") : The current category was set as unavailable. Did you load this scene at the correct time?");
         }
-
-        DisplayResults();
     }
+    #endregion
 
+    #region Display
     /// <summary>
     /// Displays the results of the Current Category to the screen using the different UI elements.
     /// </summary>
@@ -34,11 +42,21 @@ public class ResultsMenuController : MonoBehaviour
     {
         int correctAnswers = CurrentCategory.Instance.correctAnswers;
         int totalAnswers = CurrentCategory.Instance.currentCategory.questionsArray.Length;
-        float correctPercent = correctAnswers / (float)totalAnswers; //Percentage of correct answers
 
+        SetupRankingAndColor(correctAnswers / (float)totalAnswers);
+        DisplayAmountText(correctAnswers, totalAnswers);
+    }
+
+    /// <summary>
+    /// Sets the score color and ranking comment depending on the percentage of correct answers
+    /// </summary>
+    /// <param name="correctPercent">The percentage of correct answers over the total amount</param>
+    void SetupRankingAndColor(float correctPercent)
+    {
         //Different rankings with different colors and comments
         if (correctPercent < .5f)
         {
+            colorText = "FF0000";
             rankingText.text = "You can do better !";
         }
         else if (correctPercent < .75f)
@@ -51,14 +69,22 @@ public class ResultsMenuController : MonoBehaviour
             colorText = "00FF00";
             rankingText.text = "WOW !";
         }
-
-        //Constructing the string that will display the amount of good answers
+    }
+    /// <summary>
+    /// Constructing and setting the text that displays the score
+    /// </summary>
+    /// <param name="correctAnswers">The amount of correct answers the player got during his play</param>
+    /// <param name="totalAnswers">The total possible amount of good answers for this category</param>
+    void DisplayAmountText(int correctAnswers, int totalAnswers)
+    {
         amountText.text = "You got\n";
         amountText.text += "<color=#" + colorText + ">";
         amountText.text += correctAnswers.ToString() + " / ";
         amountText.text += totalAnswers.ToString();
     }
+    #endregion
 
+    #region Buttons Listeners
     /// <summary>
     /// If the player clicks on the Back button.
     /// </summary>
@@ -78,4 +104,5 @@ public class ResultsMenuController : MonoBehaviour
     {
         //TODO: Share activity
     }
+    #endregion
 }

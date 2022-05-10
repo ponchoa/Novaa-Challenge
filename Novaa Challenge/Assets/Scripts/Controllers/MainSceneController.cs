@@ -6,6 +6,11 @@ public class MainSceneController : MonoBehaviour
 {
     private void Start()
     {
-        SceneLoaderController.Instance.LoadScene(SceneType.MAINMENU); //We load the main menu on start for now
+        LoadMainMenu();
+    }
+
+    void LoadMainMenu()
+    {
+        SceneLoaderController.Instance.LoadScene(SceneType.MAINMENU);
     }
 }

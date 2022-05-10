@@ -19,14 +19,18 @@ public class SceneLoaderController : MonoBehaviour
     #endregion
 
     //TODO: add a better way to manage scenes
+    [SerializeField]
     [Tooltip("The name of the Main Menu Scene")]
-    public string mainMenuScene;
+    string mainMenuScene;
+    [SerializeField]
     [Tooltip("The name of the Categories Scene")]
-    public string categoriesScene;
+    string categoriesScene;
+    [SerializeField]
     [Tooltip("The name of the Quiz Scene")]
-    public string quizScene;
+    string quizScene;
+    [SerializeField]
     [Tooltip("The name of the Results Scene")]
-    public string resultsScene;
+    string resultsScene;
 
     /// <summary>
     /// Maps each scene type to a corresponding scene name
@@ -34,6 +38,11 @@ public class SceneLoaderController : MonoBehaviour
     Dictionary<SceneType, string> scenesMap;
 
     private void Awake()
+    {
+        FillScenesMap();
+    }
+
+    void FillScenesMap()
     {
         //TODO: For now we manually set up the map, but it should be changed.
         scenesMap = new Dictionary<SceneType, string>();

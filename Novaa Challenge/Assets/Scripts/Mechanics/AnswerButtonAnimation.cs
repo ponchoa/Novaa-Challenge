@@ -19,22 +19,22 @@ public class AnswerButtonAnimation : MonoBehaviour
     /// <summary>
     /// We cache the coroutine, just in case we need to stop it, or check if it is running.
     /// </summary>
-    Coroutine currentAnimationCoroutine = null;
-    /// <summary>
-    /// The Rect Transform of the button
-    /// </summary>
+    Coroutine currentAnimationCoroutine;
     RectTransform rTransform;
-    /// <summary>
-    /// The image of the button
-    /// </summary>
     Image image;
-    /// <summary>
-    /// The starting color, used to reset later
-    /// </summary>
     Color startColor;
 
     private void Awake()
     {
+        SetupStartingValues();
+    }
+
+    /// <summary>
+    /// Sets the necessary values, references to components, etc.
+    /// </summary>
+    void SetupStartingValues()
+    {
+        currentAnimationCoroutine = null;
         rTransform = GetComponent<RectTransform>();
         image = GetComponent<Image>();
         startColor = image.color;
@@ -66,6 +66,7 @@ public class AnswerButtonAnimation : MonoBehaviour
         }
     }
 
+    #region Animations
     /// <summary>
     /// Starts a coroutine that will animate a feedback, letting the user know that the answer was wrong.
     /// </summary>
@@ -91,9 +92,10 @@ public class AnswerButtonAnimation : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float time = elapsedTime / duration;
 
-            //First we smoothly lerp the color to red
             image.color = Color.Lerp(startColor, targetColor, Mathf.SmoothStep(0f, 1f, time));
 
+
+            //TODO: Pretty up this mess
             if (time < .25f) //First quarter, we move to the right
             {
                 time = Mathf.SmoothStep(0f, 1f, time) / .25f; //Time needs to be a value between 0 and 1 to serve as a percentage. We also smooth it.
@@ -147,4 +149,5 @@ public class AnswerButtonAnimation : MonoBehaviour
 
         currentAnimationCoroutine = null;
     }
+    #endregion
 }

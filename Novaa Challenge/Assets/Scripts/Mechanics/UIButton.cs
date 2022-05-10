@@ -20,10 +20,17 @@ public class UIButton : MonoBehaviour
 
     private void Start()
     {
+        CheckButtonTextReference();
+    }
+
+    #region Warnings
+    void CheckButtonTextReference()
+    {
         if (buttonText is null) //We make sure that there is a text referenced
         {
             buttonText = GetComponentInChildren<TextMeshProUGUI>();
             Debug.LogWarning("CategoryButton (" + name + ") : No text (TMP) reference was set in the inspector. The wrong text might have been found");
         }
     }
+    #endregion
 }
