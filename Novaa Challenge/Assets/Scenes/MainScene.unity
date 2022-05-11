@@ -391,6 +391,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b33af8bb1d89f62478da7f3e1665582e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &660210313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660210311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fcb5d0a8fc138047a45768c2fe1e78d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorsArray:
+  - {r: 0.24313727, g: 0.7058824, b: 0.5372549, a: 1}
+  - {r: 0.69598347, g: 1, b: 0.4188679, a: 1}
+  - {r: 1, g: 0.98424506, b: 0.1830188, a: 1}
+  - {r: 1, g: 0.2679245, b: 0.2679245, a: 1}
+  - {r: 0.7981435, g: 0.21960783, b: 1, a: 1}
+  - {r: 0.22075468, g: 0.3405231, b: 1, a: 1}
+  - {r: 0.21960783, g: 1, b: 0.9572795, a: 1}
+  fadeDuration: 30
+  overrideSprite: 1
+  smoothTransition: 1
+  image: {fileID: 1186479867}
+--- !u!222 &660210315
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660210311}
+  m_CullTransparentMesh: 1
 --- !u!1 &766810680
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,6 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCategory: {fileID: 0}
   isAvailable: 0
+  correctAnswers: 0
 --- !u!1 &1186479865
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,7 +544,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

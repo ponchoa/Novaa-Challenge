@@ -533,12 +533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statementText: {fileID: 625238743}
-  buttonAnswersArray:
-  - {fileID: 1528703155}
-  - {fileID: 1794747048}
-  - {fileID: 292416039}
-  - {fileID: 235651815}
-  - {fileID: 1875325552}
+  answerButtonsArray: []
   raycastBlocker: {fileID: 880748662}
   buttonAnimDuration: 0
   waitBetweenQuestions: 1.5
@@ -981,7 +976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statementText: {fileID: 625238743}
-  buttonAnswersArray:
+  answerButtonsArray:
   - {fileID: 1528703155}
   - {fileID: 1794747048}
   - {fileID: 292416039}

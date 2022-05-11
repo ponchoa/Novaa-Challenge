@@ -139,6 +139,7 @@ public class AnswerButtonAnimation : MonoBehaviour
         float elapsedTime = 0f;
         Color targetColor = Color.green;
         targetColor.a = startColor.a;
+        duration /= 2f; //We half the duration so that this animation is twice as fast as the wrong answer one
 
         while (elapsedTime <= duration)
         {

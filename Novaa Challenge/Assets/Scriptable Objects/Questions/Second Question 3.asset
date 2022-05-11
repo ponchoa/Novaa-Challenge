@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc16295500a94b14d856461974befef5, type: 3}
   m_Name: Second Question 3
   m_EditorClassIdentifier: 
-  questionStatement: Did you answer No to the first question?
+  questionStatement: What was the wrong answer to the first question?
   correctAnswerIndex: 1
   answersArray:
   - Yes
