@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc16295500a94b14d856461974befef5, type: 3}
+  m_Name: Trick Question 3
+  m_EditorClassIdentifier: 
+  questionStatement: Divide 30 by half and add ten.
+  answerArray:
+  - text: 40.5
+    isCorrect: 0
+  - text: 25
+    isCorrect: 0
+  - text: 50
+    isCorrect: 0
+  - text: 70
+    isCorrect: 1
+  - text: None of the above
+    isCorrect: 0
+  isValid: 1

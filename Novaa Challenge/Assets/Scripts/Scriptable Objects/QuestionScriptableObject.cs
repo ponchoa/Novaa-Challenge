@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Question", menuName = "Quiz/Question", order = 2)]
 public class QuestionScriptableObject : ScriptableObject
 {
+    [TextArea(1, 3)]
     [Tooltip("The question text that will be displayed at the top of the screen")]
     public string questionStatement;
 

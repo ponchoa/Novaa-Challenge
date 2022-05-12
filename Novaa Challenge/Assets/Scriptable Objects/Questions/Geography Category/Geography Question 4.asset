@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc16295500a94b14d856461974befef5, type: 3}
+  m_Name: Geography Question 4
+  m_EditorClassIdentifier: 
+  questionStatement: Which letter never appears in any U.S. state name
+  answerArray:
+  - text: Z
+    isCorrect: 0
+  - text: Q
+    isCorrect: 1
+  - text: J
+    isCorrect: 0
+  - text: X
+    isCorrect: 0
+  - text: Y
+    isCorrect: 0
+  isValid: 1

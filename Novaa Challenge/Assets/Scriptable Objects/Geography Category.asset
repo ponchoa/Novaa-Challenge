@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080f047a221dd884aad93aeff57e0739, type: 3}
+  m_Name: Geography Category
+  m_EditorClassIdentifier: 
+  categoryName: Geography
+  questionsArray:
+  - {fileID: 11400000, guid: 9eb430e6265f12d47a14d132510dc8b9, type: 2}
+  - {fileID: 11400000, guid: 5b145acad7f278a4babd3a9bd4cbe573, type: 2}
+  - {fileID: 11400000, guid: 696e79228c24cea4ca84ead7020232b6, type: 2}
+  - {fileID: 11400000, guid: 258d1474aa87a174aa3e43fffb0bcf6d, type: 2}
+  - {fileID: 11400000, guid: e1ad1b7fa5a0c2141a73d68aaf760d25, type: 2}

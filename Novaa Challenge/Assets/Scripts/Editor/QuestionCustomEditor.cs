@@ -37,14 +37,22 @@ public class QuestionCustomEditor : Editor
         for (int i = 0; i < question.answerArray.Length; i++)
         {
             bool shouldBreak = false;
-            for (int j = i + 1; j < question.answerArray.Length; j++)
+            if (string.IsNullOrWhiteSpace(question.answerArray[i].text))
             {
-                if (question.answerArray[i].text == question.answerArray[j].text)
+                EditorGUILayout.HelpBox("The answer at index " + i.ToString() + " is empty", MessageType.Error);
+                question.isValid = false;
+            }
+            else
+            {
+                for (int j = i + 1; j < question.answerArray.Length; j++)
                 {
-                    shouldBreak = true;
-                    EditorGUILayout.HelpBox("There are multiple answers with the same text", MessageType.Error);
-                    question.isValid = false;
-                    break;
+                    if (question.answerArray[i].text == question.answerArray[j].text)
+                    {
+                        shouldBreak = true;
+                        EditorGUILayout.HelpBox("There are multiple answers with the same text", MessageType.Error);
+                        question.isValid = false;
+                        break;
+                    }
                 }
             }
             if (shouldBreak)

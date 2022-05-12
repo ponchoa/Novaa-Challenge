@@ -386,7 +386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 771372514246299266, guid: 26a8c1cb00406b446a4f73b4fa1d88bd, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
-      value: 1
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 771372514246299293, guid: 26a8c1cb00406b446a4f73b4fa1d88bd, type: 3}
       propertyPath: m_Name
@@ -419,6 +419,10 @@ MonoBehaviour:
   categories:
   - {fileID: 11400000, guid: 160f5880ea38d634ba5da971f9c52fd8, type: 2}
   - {fileID: 11400000, guid: e4bf576cfc7f71e4ea049184ae6c7224, type: 2}
+  - {fileID: 11400000, guid: d0d62a6d8e66a5041ba7b284ba8936b2, type: 2}
+  - {fileID: 11400000, guid: bc08c4ef087564d42b1a69b029b4bd09, type: 2}
+  - {fileID: 11400000, guid: 0839794a6b4bfbf47a414398bf2fa0ac, type: 2}
+  - {fileID: 11400000, guid: 6c1bc32adf4200a439afa48bf7973fb0, type: 2}
   categoryButtonPrefab: {fileID: 7194322745140768225, guid: 297f9b4ae60592b4da4470245f79ac87, type: 3}
   verticalLayoutGroup: {fileID: 1574863507}
 --- !u!1 &997716653
