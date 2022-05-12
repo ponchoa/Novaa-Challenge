@@ -1,48 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
+using NovaaTest.SCObjects;
 using UnityEngine;
 
-/// <summary>
-/// This is a Singleton class that stores the currently playing category for multiple references
-/// </summary>
-public class CurrentCategory : MonoBehaviour
+namespace NovaaTest.Mechanics
 {
-    #region Singleton
-    private static CurrentCategory instance;
-    public static CurrentCategory Instance
+    /// <summary>
+    /// This is a Singleton class that stores the currently playing category for multiple references
+    /// </summary>
+    public class CurrentCategory : MonoBehaviour
     {
-        get
+        #region Singleton
+        private static CurrentCategory instance;
+        public static CurrentCategory Instance
         {
-            if (instance is null)
-                instance = FindObjectOfType<CurrentCategory>();
-            return instance;
+            get
+            {
+                if (instance is null)
+                    instance = FindObjectOfType<CurrentCategory>();
+                return instance;
+            }
         }
-    }
-    #endregion
+        #endregion
 
-    /// <summary>
-    /// A universal reference to the current loaded category.
-    /// </summary>
-    [HideInInspector]
-    public CategoryScriptableObject currentCategory;
-    /// <summary>
-    /// A universal boolean that governs if the current category is coherent with the game state
-    /// </summary>
-    [HideInInspector]
-    public bool isAvailable;
-    /// <summary>
-    /// The amount of correct answers the player got during his play of this category
-    /// </summary>
-    [HideInInspector]
-    public int correctAnswers;
+        /// <summary>
+        /// A universal reference to the current loaded category.
+        /// </summary>
+        [HideInInspector]
+        public CategoryScriptableObject currentCategory;
+        /// <summary>
+        /// A universal boolean that governs if the current category is coherent with the game state
+        /// </summary>
+        [HideInInspector]
+        public bool isAvailable;
+        /// <summary>
+        /// The amount of correct answers the player got during his play of this category
+        /// </summary>
+        [HideInInspector]
+        public int correctAnswers;
 
-    /// <summary>
-    /// Used to reset the container to prepare for the next play.
-    /// </summary>
-    public void Clear()
-    {
-        correctAnswers = 0;
-        currentCategory = null;
-        isAvailable = false;
+        /// <summary>
+        /// Used to reset the container to prepare for the next play.
+        /// </summary>
+        public void Clear()
+        {
+            correctAnswers = 0;
+            currentCategory = null;
+            isAvailable = false;
+        }
     }
 }

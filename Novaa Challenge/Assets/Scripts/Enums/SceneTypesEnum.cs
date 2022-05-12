@@ -1,7 +1,10 @@
-public enum SceneType
+namespace NovaaTest.Enums
 {
-    MAINMENU,
-    CATEGORIES,
-    QUIZ,
-    RESULTS
+    public enum SceneType
+    {
+        MAINMENU,
+        CATEGORIES,
+        QUIZ,
+        RESULTS
+    }
 }

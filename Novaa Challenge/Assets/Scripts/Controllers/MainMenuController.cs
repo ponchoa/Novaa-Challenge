@@ -1,17 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
+using NovaaTest.Enums;
 using UnityEngine;
 
-public class MainMenuController : MonoBehaviour
+namespace NovaaTest.Controllers
 {
-    /// <summary>
-    /// The start button listener
-    /// </summary>
-    public void OnStartButtonClick()
+    public class MainMenuController : MonoBehaviour
     {
-        if (SceneLoaderController.Instance.LoadScene(SceneType.CATEGORIES))
+        /// <summary>
+        /// The start button listener
+        /// </summary>
+        public void OnStartButtonClick()
         {
-            SceneLoaderController.Instance.UnloadScene(SceneType.MAINMENU);
+            if (SceneLoaderController.Instance.LoadScene(SceneType.CATEGORIES))
+            {
+                SceneLoaderController.Instance.UnloadScene(SceneType.MAINMENU);
+            }
         }
     }
 }

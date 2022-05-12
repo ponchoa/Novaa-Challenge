@@ -1,6 +1,9 @@
-[System.Serializable]
-public struct AnswerStruct
+namespace NovaaTest.Structs
 {
-    public string text;
-    public bool isCorrect;
+    [System.Serializable]
+    public struct AnswerStruct
+    {
+        public string text;
+        public bool isCorrect;
+    }
 }

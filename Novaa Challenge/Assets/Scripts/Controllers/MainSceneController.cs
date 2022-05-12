@@ -1,16 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+using NovaaTest.Enums;
 using UnityEngine;
 
-public class MainSceneController : MonoBehaviour
+namespace NovaaTest.Controllers
 {
-    private void Start()
+    public class MainSceneController : MonoBehaviour
     {
-        LoadMainMenu();
-    }
+        private void Start()
+        {
+            LoadMainMenu();
+        }
 
-    void LoadMainMenu()
-    {
-        SceneLoaderController.Instance.LoadScene(SceneType.MAINMENU);
+        void LoadMainMenu()
+        {
+            SceneLoaderController.Instance.LoadScene(SceneType.MAINMENU);
+        }
     }
 }

@@ -1,94 +1,111 @@
-using System.Collections;
-using System.Collections.Generic;
+using NovaaTest.Enums;
+using NovaaTest.Mechanics;
+using NovaaTest.SCObjects;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CategoriesMenuController : MonoBehaviour
+namespace NovaaTest.Controllers
 {
-    [SerializeField]
-    [Tooltip("The array of Category Scriptable Objects that are present in the game")]
-    CategoryScriptableObject[] categories;
-    [SerializeField]
-    [Tooltip("The prefab of the button that will be instantiated fo each category in the menu")]
-    GameObject categoryButtonPrefab;
-    [SerializeField]
-    [Tooltip("The \"Content\" object MUST be referenced here. It is the vertical layout group that will ontain the buttons")]
-    Transform verticalLayoutGroup;
-
-    private void Start()
+    public class CategoriesMenuController : MonoBehaviour
     {
-        CheckCategoriesReferences();
-        CheckButtonPrefab();
-        CheckVerticalLayoutGroupReference();
+        [SerializeField]
+        [Tooltip("The array of Category Scriptable Objects that are present in the game")]
+        CategoryScriptableObject[] categories;
+        [SerializeField]
+        [Tooltip("The prefab of the button that will be instantiated fo each category in the menu")]
+        GameObject categoryButtonPrefab;
+        [SerializeField]
+        [Tooltip("The \"Content\" object MUST be referenced here. It is the vertical layout group that will ontain the buttons")]
+        Transform verticalLayoutGroup;
 
-        FillCategoriesButtons();
-    }
-
-    /// <summary>
-    /// Instantiate one button for each category in the vertical layout group
-    /// </summary>
-    void FillCategoriesButtons()
-    {
-        for (int i = 0; i < categories.Length; i++)
+        private void Start()
         {
-            GameObject buttonGO = Instantiate(categoryButtonPrefab, verticalLayoutGroup);
-            UIButton button = buttonGO.GetComponent<UIButton>();
-            button.ButtonText = categories[i].categoryName;
-            CategoryScriptableObject category = categories[i]; //We have to cache the category for the listener
-            buttonGO.GetComponent<Button>().onClick.AddListener(() => { OnCategoryButtonClick(category); });
-        }
-    }
+            if (!CheckCategoriesReferences())
+                return;
+            if (!CheckButtonPrefab())
+                return;
+            if (!CheckVerticalLayoutGroupReference())
+                return;
 
-    #region Warnings
-    void CheckCategoriesReferences()
-    {
-        if (categories.Length <= 0)
-        {
-            Debug.LogWarning("CategoriesMenuController(" + name + ") : No categories were listed in the object");
-            return;
+            FillCategoriesButtons();
         }
-    }
-    void CheckButtonPrefab()
-    {
-        if (categoryButtonPrefab is null)
-        {
-            Debug.LogWarning("CategoriesMenuController(" + name + ") : No button prefab was specified for the categories");
-            return;
-        }
-    }
-    void CheckVerticalLayoutGroupReference()
-    {
-        if (verticalLayoutGroup is null)
-        {
-            Debug.LogWarning("CategoriesMenuController(" + name + ") : No vertical layout group was specified for the buttons");
-            return;
-        }
-    }
-    #endregion
 
-    #region Listener
-    /// <summary>
-    /// The listener that should be set on each button to set up the category container and load the next screen
-    /// </summary>
-    /// <param name="category">The category that will be saved to correctly set up the quiz</param>
-    public void OnCategoryButtonClick(CategoryScriptableObject category)
-    {
-        SetCurrentCategory(category);
-        LoadNextScene();
-    }
-
-    public void SetCurrentCategory(CategoryScriptableObject category)
-    {
-        CurrentCategory.Instance.currentCategory = category;
-        CurrentCategory.Instance.isAvailable = true;
-    }
-
-    void LoadNextScene()
-    {
-        if (SceneLoaderController.Instance.LoadScene(SceneType.QUIZ))
+        /// <summary>
+        /// Instantiate one button for each category in the vertical layout group
+        /// </summary>
+        void FillCategoriesButtons()
         {
-            SceneLoaderController.Instance.UnloadScene(SceneType.CATEGORIES);
+            for (int i = 0; i < categories.Length; i++)
+            {
+                GameObject buttonGO = Instantiate(categoryButtonPrefab, verticalLayoutGroup);
+                if (buttonGO != null)
+                {
+                    UIButton button = buttonGO.GetComponent<UIButton>();
+                    if (button != null)
+                    {
+                        button.ButtonText = categories[i].categoryName;
+                        CategoryScriptableObject category = categories[i]; //We have to cache the category for the listener
+                        if (category != null)
+                            buttonGO.GetComponent<Button>()?.onClick.AddListener(() => { OnCategoryButtonClick(category); });
+                    }
+                }
+            }
         }
+
+        #region Checks
+        bool CheckCategoriesReferences()
+        {
+            if (categories.Length <= 0)
+            {
+                Debug.LogError("CategoriesMenuController(" + name + ") : No categories were listed in the object");
+                return false;
+            }
+            return true;
+        }
+        bool CheckButtonPrefab()
+        {
+            if (categoryButtonPrefab is null)
+            {
+                Debug.LogError("CategoriesMenuController(" + name + ") : No button prefab was specified for the categories");
+                return false;
+            }
+            return true;
+        }
+        bool CheckVerticalLayoutGroupReference()
+        {
+            if (verticalLayoutGroup is null)
+            {
+                Debug.LogError("CategoriesMenuController(" + name + ") : No vertical layout group was specified for the buttons");
+                return false;
+            }
+            return true;
+        }
+        #endregion
+
+        #region Listener
+        /// <summary>
+        /// The listener that should be set on each button to set up the category container and load the next screen
+        /// </summary>
+        /// <param name="category">The category that will be saved to correctly set up the quiz</param>
+        public void OnCategoryButtonClick(CategoryScriptableObject category)
+        {
+            SetCurrentCategory(category);
+            LoadNextScene();
+        }
+
+        public void SetCurrentCategory(CategoryScriptableObject category)
+        {
+            CurrentCategory.Instance.currentCategory = category;
+            CurrentCategory.Instance.isAvailable = true;
+        }
+
+        void LoadNextScene()
+        {
+            if (SceneLoaderController.Instance.LoadScene(SceneType.QUIZ))
+            {
+                SceneLoaderController.Instance.UnloadScene(SceneType.CATEGORIES);
+            }
+        }
+        #endregion
     }
-    #endregion
 }

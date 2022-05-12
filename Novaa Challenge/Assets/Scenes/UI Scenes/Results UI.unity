@@ -560,7 +560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7194322745140768224, guid: ff745de75f9d6614891a0939d9c970e9, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.3
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 7194322745140768224, guid: ff745de75f9d6614891a0939d9c970e9, type: 3}
       propertyPath: m_AnchorMin.x
@@ -568,7 +568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7194322745140768224, guid: ff745de75f9d6614891a0939d9c970e9, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7194322745140768224, guid: ff745de75f9d6614891a0939d9c970e9, type: 3}
       propertyPath: m_SizeDelta.x
@@ -762,6 +762,10 @@ PrefabInstance:
     - target: {fileID: 7194322745140768225, guid: ff745de75f9d6614891a0939d9c970e9, type: 3}
       propertyPath: m_Name
       value: Share Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194322745140768225, guid: ff745de75f9d6614891a0939d9c970e9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7194322745140768227, guid: ff745de75f9d6614891a0939d9c970e9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
