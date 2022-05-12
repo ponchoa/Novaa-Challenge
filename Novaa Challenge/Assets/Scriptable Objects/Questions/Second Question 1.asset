@@ -17,3 +17,8 @@ MonoBehaviour:
   answersArray:
   - Yes
   - No
+  answerArray:
+  - text: Yes
+    isCorrect: 1
+  - text: No
+    isCorrect: 0

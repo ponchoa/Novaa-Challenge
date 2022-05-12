@@ -19,3 +19,12 @@ MonoBehaviour:
   - 1
   - 4
   - 12
+  answerArray:
+  - text: 0
+    isCorrect: 0
+  - text: 1
+    isCorrect: 0
+  - text: 4
+    isCorrect: 1
+  - text: 12
+    isCorrect: 0

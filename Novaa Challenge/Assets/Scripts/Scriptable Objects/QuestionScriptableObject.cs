@@ -8,8 +8,27 @@ public class QuestionScriptableObject : ScriptableObject
     [Tooltip("The question text that will be displayed at the top of the screen")]
     public string questionStatement;
 
-    [Tooltip("The element of the array that corresponds to the correct answer")]
-    public int correctAnswerIndex;
     [Tooltip("All possible answers")]
-    public string[] answersArray;
+    public AnswerStruct[] answerArray;
+
+    /// <summary>
+    /// Used to check if the question was correctly set up in the inspector. The question should be skipped if this is false.
+    /// </summary>
+    [HideInInspector]
+    public bool isValid = true;
+
+    public int CorrectAnswerIndex
+    {
+        get
+        {
+            for (int i = 1; i < answerArray.Length; i++)
+            {
+                if (answerArray[i].isCorrect)
+                {
+                    return i;
+                }
+            }
+            return 0;
+        }
+    }
 }

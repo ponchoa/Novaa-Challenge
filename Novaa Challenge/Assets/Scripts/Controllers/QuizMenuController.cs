@@ -84,7 +84,10 @@ public class QuizMenuController : MonoBehaviour
             question = CurrentCategory.Instance.currentCategory.questionsArray[questionIndex];
             questionIndex++;
 
-            DisplayQuestion();
+            if (question != null && question.isValid)
+                DisplayQuestion();
+            else
+                LoadNextQuestion();
         }
     }
     IEnumerator WaitBeforeNextQuestion()
@@ -146,7 +149,7 @@ public class QuizMenuController : MonoBehaviour
     /// <returns>The proper amount of possible answers</returns>
     int GetAmountOfAnswers()
     {
-        return Mathf.Min(5, Mathf.Min(answerButtonsArray.Length, question.answersArray.Length));
+        return Mathf.Min(5, Mathf.Min(answerButtonsArray.Length, question.answerArray.Length));
     }
 
     #region Buttons Setup
@@ -171,13 +174,13 @@ public class QuizMenuController : MonoBehaviour
         if (buttonsAnimControllers[currentIndex] != null && buttonAnimDuration > 0f)
         {
             buttonsAnimControllers[currentIndex].ResetColor();
-            if (0 <= question.correctAnswerIndex && question.correctAnswerIndex < buttonsAnimControllers.Length)
+            if (0 <= question.CorrectAnswerIndex && question.CorrectAnswerIndex < buttonsAnimControllers.Length)
             {
                 AnswerButtonAnimation buttonAnim = buttonsAnimControllers[currentIndex]; //We need to cache it so that the listener will work.
                 //We add the listener
                 answerButtonsArray[currentIndex].onClick.AddListener(() => { buttonAnim.OnButtonClick(buttonAnimDuration); });
                 //We specify the correct answer to each button (See: the summary of correctAnswer)
-                buttonsAnimControllers[currentIndex].correctAnswer = buttonsAnimControllers[question.correctAnswerIndex];
+                buttonsAnimControllers[currentIndex].correctAnswer = buttonsAnimControllers[question.CorrectAnswerIndex];
             }
         }
     }
@@ -189,9 +192,9 @@ public class QuizMenuController : MonoBehaviour
     void SetupAnswerButton(int currentIndex)
     {
         answerButtonsArray[currentIndex].gameObject.SetActive(true);
-        answerButtonsArray[currentIndex].GetComponent<UIButton>().ButtonText = question.answersArray[currentIndex];
+        answerButtonsArray[currentIndex].GetComponent<UIButton>().ButtonText = question.answerArray[currentIndex].text;
         //We set the correct listeners depending on if the answer is the correct one.
-        if (currentIndex == question.correctAnswerIndex)
+        if (currentIndex == question.CorrectAnswerIndex)
             answerButtonsArray[currentIndex].onClick.AddListener(OnCorrectAnswerClick);
         else
             answerButtonsArray[currentIndex].onClick.AddListener(OnWrongAnswerClick);

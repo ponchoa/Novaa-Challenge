@@ -20,3 +20,14 @@ MonoBehaviour:
   - 42
   - 4
   - 1
+  answerArray:
+  - text: 0
+    isCorrect: 0
+  - text: 5
+    isCorrect: 0
+  - text: 42
+    isCorrect: 0
+  - text: 4
+    isCorrect: 0
+  - text: 1
+    isCorrect: 1

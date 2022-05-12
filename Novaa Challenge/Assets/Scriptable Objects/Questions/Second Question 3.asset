@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Second Question 3
   m_EditorClassIdentifier: 
   questionStatement: What was the wrong answer to the first question?
-  correctAnswerIndex: 1
-  answersArray:
-  - Yes
-  - No
+  answerArray:
+  - text: Yes
+    isCorrect: 0
+  - text: No
+    isCorrect: 1

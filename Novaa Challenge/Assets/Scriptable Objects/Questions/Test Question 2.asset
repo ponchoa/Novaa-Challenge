@@ -14,10 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questionStatement: What is the answer to the Ultimate Question of Life, the Universe,
     and Everything?
-  correctAnswerIndex: 3
-  answersArray:
-  - 69
-  - Definitely not a number
-  - 420
-  - 42
-  - Unknowable
+  answerArray:
+  - text: 69
+    isCorrect: 0
+  - text: Definitely not a number
+    isCorrect: 0
+  - text: 420
+    isCorrect: 0
+  - text: 42
+    isCorrect: 1
+  - text: Unknowable
+    isCorrect: 0
+  isValid: 1

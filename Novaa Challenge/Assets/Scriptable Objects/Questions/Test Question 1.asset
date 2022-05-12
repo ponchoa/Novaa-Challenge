@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Test Question 1
   m_EditorClassIdentifier: 
   questionStatement: What is love?
-  correctAnswerIndex: 1
-  answersArray:
-  - A chemical reaction in the brain
-  - Baby don't hurt me
-  - Love is meaningless
+  answerArray:
+  - text: A chemical reaction in the brain
+    isCorrect: 0
+  - text: Baby don't hurt me
+    isCorrect: 1
+  - text: Love is meaningless
+    isCorrect: 0
+  isValid: 1

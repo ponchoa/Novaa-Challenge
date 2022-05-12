@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Test Question 3
   m_EditorClassIdentifier: 
   questionStatement: Are you having fun?
-  correctAnswerIndex: 0
-  answersArray:
-  - Yes
-  - No
+  answerArray:
+  - text: Yes
+    isCorrect: 1
+  - text: No
+    isCorrect: 0
+  isValid: 1

@@ -41,7 +41,7 @@ public class ResultsMenuController : MonoBehaviour
     void DisplayResults()
     {
         int correctAnswers = CurrentCategory.Instance.correctAnswers;
-        int totalAnswers = CurrentCategory.Instance.currentCategory.questionsArray.Length;
+        int totalAnswers = CurrentCategory.Instance.currentCategory.NumberOfValidQuestions;
 
         SetupRankingAndColor(correctAnswers / (float)totalAnswers);
         DisplayAmountText(correctAnswers, totalAnswers);
