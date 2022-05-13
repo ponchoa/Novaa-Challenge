@@ -26,10 +26,7 @@ namespace NovaaTest.Controllers
         Transform raycastBlocker;
 
         [SerializeField]
-        [Tooltip("The duration of the button feedback animation in seconds (set to zero to skip animations)")]
-        float buttonAnimDuration = .4f;
-        [SerializeField]
-        [Tooltip("The wait time in seconds after the animation is done before loading the next question or the results screen")]
+        [Tooltip("The wait time in seconds before loading the next question or the results screen (Make sure it is longer than the animation of the buttons)")]
         float waitBetweenQuestions = 1.6f;
 
         /// <summary>
@@ -200,14 +197,11 @@ namespace NovaaTest.Controllers
         /// <param name="currentIndex">The index of the button to set up</param>
         void SetupButtonAnimation(int currentIndex)
         {
-            if (buttonsAnimControllers[currentIndex] != null && buttonAnimDuration > 0f)
+            if (buttonsAnimControllers[currentIndex] != null)
             {
                 buttonsAnimControllers[currentIndex].ResetColor();
                 if (0 <= question.CorrectAnswerIndex && question.CorrectAnswerIndex < buttonsAnimControllers.Length)
                 {
-                    AnswerButtonAnimation buttonAnim = buttonsAnimControllers[currentIndex]; //We need to cache it so that the listener will work.
-                    // We add the listener.
-                    answerButtonsArray[currentIndex].onClick.AddListener(() => { buttonAnim.OnButtonClick(buttonAnimDuration); });
                     // We specify the correct answer to each button (See: the summary of correctAnswer).
                     buttonsAnimControllers[currentIndex].correctAnswer = buttonsAnimControllers[question.CorrectAnswerIndex];
                 }
