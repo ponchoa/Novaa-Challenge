@@ -100,12 +100,8 @@ namespace NovaaTest.Controllers
         /// </summary>
         public void OnClickBackButton()
         {
-            if (SceneLoaderController.Instance.LoadScene(SceneType.Categories))
-            {
-                // We clear the current category container to prepare for the next set of questions.
-                CurrentCategory.Instance.Clear();
-                SceneLoaderController.Instance.UnloadScene(SceneType.Results);
-            }
+            CurrentCategory.Instance.Clear();
+            GameStateController.Instance?.LoadNextState();
         }
 
         /// <summary>

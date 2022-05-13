@@ -1,6 +1,6 @@
 namespace NovaaTest.Enums
 {
-    public enum SceneType
+    public enum GameState
     {
         MainMenu,
         Categories,

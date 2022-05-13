@@ -149,10 +149,7 @@ namespace NovaaTest.Controllers
         /// </summary>
         void LoadResultsScreen()
         {
-            if (SceneLoaderController.Instance.LoadScene(SceneType.Results))
-            {
-                SceneLoaderController.Instance.UnloadScene(SceneType.Quiz);
-            }
+            GameStateController.Instance?.LoadNextState();
         }
 
         /// <summary>

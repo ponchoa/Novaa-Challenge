@@ -1,4 +1,5 @@
 using NovaaTest.Enums;
+using NovaaTest.Structs;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,29 +24,14 @@ namespace NovaaTest.Controllers
         }
         #endregion
 
-        //TODO: add a better way to manage scenes
-        [SerializeField]
-        [Tooltip("The name of the Main Menu Scene")]
-        string mainMenuScene;
-        [SerializeField]
-        [Tooltip("The name of the Categories Scene")]
-        string categoriesScene;
-        [SerializeField]
-        [Tooltip("The name of the Quiz Scene")]
-        string quizScene;
-        [SerializeField]
-        [Tooltip("The name of the Results Scene")]
-        string resultsScene;
-
         /// <summary>
         /// Maps each scene type to a corresponding scene name
         /// </summary>
-        Dictionary<SceneType, string> scenesMap;
+        Dictionary<GameState, string> scenesMap;
 
         private void Awake()
         {
             MakeInstance();
-            FillScenesMap();
         }
 
         void MakeInstance()
@@ -54,14 +40,20 @@ namespace NovaaTest.Controllers
                 instance = this;
         }
 
-        void FillScenesMap()
+        /// <summary>
+        /// Initializes all of the scenes that will be used in-game. (Remember to add them to the Build Settings)
+        /// </summary>
+        /// <param name="scenesArray">The array containing the data pertaining to each scene</param>
+        public void Initialize(SceneStruct[] scenesArray)
         {
-            //TODO: For now we manually set up the map, but it should be changed.
-            scenesMap = new Dictionary<SceneType, string>();
-            scenesMap.Add(SceneType.MainMenu, mainMenuScene);
-            scenesMap.Add(SceneType.Categories, categoriesScene);
-            scenesMap.Add(SceneType.Quiz, quizScene);
-            scenesMap.Add(SceneType.Results, resultsScene);
+            scenesMap = new Dictionary<GameState, string>();
+            if (scenesArray != null)
+            {
+                for (int i = 0; i < scenesArray.Length; i++)
+                {
+                    scenesMap.Add(scenesArray[i].scenetype, scenesArray[i].sceneName);
+                }
+            }
         }
 
         /// <summary>
@@ -69,7 +61,7 @@ namespace NovaaTest.Controllers
         /// </summary>
         /// <param name="scene">The scene type that needs to be loaded</param>
         /// <returns>True if the scene was loaded, false if it wasn't.</returns>
-        public bool LoadScene(SceneType scene)
+        public bool LoadScene(GameState scene)
         {
             if (scenesMap.ContainsKey(scene))
             {
@@ -77,7 +69,7 @@ namespace NovaaTest.Controllers
                 SceneManager.LoadScene(scenesMap[scene], LoadSceneMode.Additive);
                 return true;
             }
-            Debug.LogWarning($"SceneLoaderController({name}) : A scene of an unknown type tried to be loaded. Add the corresponding scene type in the controller", this);
+            Debug.LogError($"SceneLoaderController({name}) : A scene of an unknown type tried to be loaded. Add the corresponding scene type in the controller", this);
             return false;
         }
 
@@ -86,7 +78,7 @@ namespace NovaaTest.Controllers
         /// </summary>
         /// <param name="scene">The scene type that was previously loaded additively.</param>
         /// <returns>Whether or not the operation succeded.</returns>
-        public bool UnloadScene(SceneType scene)
+        public bool UnloadScene(GameState scene)
         {
             if (scenesMap.ContainsKey(scene))
             {

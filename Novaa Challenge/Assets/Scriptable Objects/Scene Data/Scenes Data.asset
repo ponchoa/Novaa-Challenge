@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75fd8b204cd692240a1e1393bdc717ff, type: 3}
+  m_Name: Scenes Data
+  m_EditorClassIdentifier: 
+  scenesData:
+  - sceneObject: {fileID: 102900000, guid: 1cfd04108e9c349498baef7845cd3dbd, type: 3}
+    sceneName: Main Menu UI
+    scenetype: 0
+  - sceneObject: {fileID: 102900000, guid: 45a36215fcd67684c9404857612fe26b, type: 3}
+    sceneName: Category Choice UI
+    scenetype: 1
+  - sceneObject: {fileID: 102900000, guid: f303d38553b956f47b4f8a510282d724, type: 3}
+    sceneName: Quiz UI
+    scenetype: 2
+  - sceneObject: {fileID: 102900000, guid: e34cf5e2eef0cb047a6a3d5826004eba, type: 3}
+    sceneName: Results UI
+    scenetype: 3

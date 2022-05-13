@@ -7,12 +7,7 @@ namespace NovaaTest.Controllers
     {
         private void Start()
         {
-            LoadMainMenu();
-        }
-
-        void LoadMainMenu()
-        {
-            SceneLoaderController.Instance.LoadScene(SceneType.MainMenu);
+            GameStateController.Instance?.InitializeGame();
         }
     }
 }

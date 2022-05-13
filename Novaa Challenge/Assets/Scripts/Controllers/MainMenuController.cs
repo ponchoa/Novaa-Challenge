@@ -10,10 +10,7 @@ namespace NovaaTest.Controllers
         /// </summary>
         public void OnStartButtonClick()
         {
-            if (SceneLoaderController.Instance.LoadScene(SceneType.Categories))
-            {
-                SceneLoaderController.Instance.UnloadScene(SceneType.MainMenu);
-            }
+            GameStateController.Instance?.LoadNextState();
         }
     }
 }

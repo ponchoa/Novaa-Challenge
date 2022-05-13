@@ -102,10 +102,7 @@ namespace NovaaTest.Controllers
 
         void LoadNextScene()
         {
-            if (SceneLoaderController.Instance.LoadScene(SceneType.Quiz))
-            {
-                SceneLoaderController.Instance.UnloadScene(SceneType.Categories);
-            }
+            GameStateController.Instance?.LoadNextState();
         }
         #endregion
     }
