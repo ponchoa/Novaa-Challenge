@@ -19,6 +19,10 @@ namespace NovaaTest.CustomInspector
             }
         }
 
+        /// <summary>
+        /// Checks if there are between 2 and 5 possible answers.
+        /// </summary>
+        /// <param name="question">The QuestionScriptableObject to inspect.</param>
         void CheckNumberOfAnswers(QuestionScriptableObject question)
         {
             if (question.answerArray is null) // It is null for a few frames when the question is created.
@@ -29,6 +33,10 @@ namespace NovaaTest.CustomInspector
                 question.isValid = false;
             }
         }
+        /// <summary>
+        /// Checks if all answers have a non-empty text different from the others.
+        /// </summary>
+        /// <param name="question">The QuestionScriptableObject to inspect.</param>
         void CheckAnswersText(QuestionScriptableObject question)
         {
             if (question.answerArray is null) // It is null for a few frames when the question is created.
@@ -59,6 +67,10 @@ namespace NovaaTest.CustomInspector
                     break;
             }
         }
+        /// <summary>
+        /// Check if any answer is checked as the correct one.
+        /// </summary>
+        /// <param name="question">The QuestionScriptableObject to inspect.</param>
         void CheckIfAnyChecked(QuestionScriptableObject question)
         {
             if (question.answerArray is null)

@@ -11,9 +11,11 @@ namespace NovaaTest.Controllers
         [SerializeField]
         [Tooltip("The array of Category Scriptable Objects that are present in the game")]
         CategoryScriptableObject[] categories;
+
         [SerializeField]
         [Tooltip("The prefab of the button that will be instantiated fo each category in the menu")]
         GameObject categoryButtonPrefab;
+
         [SerializeField]
         [Tooltip("The \"Content\" object MUST be referenced here. It is the vertical layout group that will ontain the buttons")]
         Transform verticalLayoutGroup;
@@ -43,7 +45,8 @@ namespace NovaaTest.Controllers
                     UIButton button = buttonGO.GetComponent<UIButton>();
                     if (button != null)
                     {
-                        button.ButtonText = categories[i].categoryName;
+                        if (button.ButtonText != null)
+                            button.ButtonText = categories[i].categoryName;
                         // We have to cache the category for the listener.
                         CategoryScriptableObject category = categories[i];
                         if (category != null)
@@ -54,6 +57,10 @@ namespace NovaaTest.Controllers
         }
 
         #region Checks
+        /// <summary>
+        /// Checks if there are categories set up in the inspector.
+        /// </summary>
+        /// <returns>Whether or not the categories were properly referenced.</returns>
         bool CheckCategoriesReferences()
         {
             if (categories.Length <= 0)
@@ -63,6 +70,10 @@ namespace NovaaTest.Controllers
             }
             return true;
         }
+        /// <summary>
+        /// Checks if there is a prefab set for the categories buttons.
+        /// </summary>
+        /// <returns>Whether or not the prefab was properly referenced.</returns>
         bool CheckButtonPrefab()
         {
             if (categoryButtonPrefab is null)
@@ -72,6 +83,10 @@ namespace NovaaTest.Controllers
             }
             return true;
         }
+        /// <summary>
+        /// Checks if there is a vertical layout group referenced in the inspector.
+        /// </summary>
+        /// <returns>Whether or not the vertical layout group was properly referenced.</returns>
         bool CheckVerticalLayoutGroupReference()
         {
             if (verticalLayoutGroup is null)
@@ -94,12 +109,19 @@ namespace NovaaTest.Controllers
             LoadNextScene();
         }
 
+        /// <summary>
+        /// Prepares the category for later access.
+        /// </summary>
+        /// <param name="category">The category that will be used.</param>
         void SetCurrentCategory(CategoryScriptableObject category)
         {
             CurrentCategory.Instance.currentCategory = category;
             CurrentCategory.Instance.isAvailable = true;
         }
 
+        /// <summary>
+        /// Loads the Quiz scene.
+        /// </summary>
         void LoadNextScene()
         {
             GameStateController.Instance?.LoadNextState();

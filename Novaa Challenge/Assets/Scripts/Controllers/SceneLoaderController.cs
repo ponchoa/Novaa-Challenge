@@ -34,6 +34,9 @@ namespace NovaaTest.Controllers
             MakeInstance();
         }
 
+        /// <summary>
+        /// Initializes the singleton instance.
+        /// </summary>
         void MakeInstance()
         {
             if (instance is null)

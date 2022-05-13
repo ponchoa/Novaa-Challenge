@@ -40,6 +40,9 @@ namespace NovaaTest.Controllers
         }
 
         #region Checks
+        /// <summary>
+        /// Checks if the scenes data scriptable object is properly set.
+        /// </summary>
         void CheckSceneDatabase()
         {
             if (sceneDatabase is null)
@@ -53,6 +56,9 @@ namespace NovaaTest.Controllers
         }
         #endregion
 
+        /// <summary>
+        /// Initializes the singleton instance.
+        /// </summary>
         void MakeInstance()
         {
             if (instance is null)

@@ -18,6 +18,10 @@ namespace NovaaTest.CustomInspector
             }
         }
 
+        /// <summary>
+        /// Checks if the category has a proper name.
+        /// </summary>
+        /// <param name="category">The CategoryScriptableObject to inspect.</param>
         void CheckCategoryName(CategoryScriptableObject category)
         {
             if (string.IsNullOrWhiteSpace(category.categoryName))
@@ -25,6 +29,10 @@ namespace NovaaTest.CustomInspector
                 EditorGUILayout.HelpBox("The category doesn't have a proper name.", MessageType.Warning);
             }
         }
+        /// <summary>
+        /// Checks if the questions are all valid.
+        /// </summary>
+        /// <param name="category">The CategoryScriptableObject to inspect.</param>
         void CheckAllQuestionsValidity(CategoryScriptableObject category)
         {
             if (category.questionsArray is null) // It is null for a few frames when the category is created.
@@ -43,6 +51,10 @@ namespace NovaaTest.CustomInspector
                 }
             }
         }
+        /// <summary>
+        /// Checks if there are between 2 and 5 valid questions.
+        /// </summary>
+        /// <param name="category">The CategoryScriptableObject to inspect.</param>
         void CheckNumberOfQuestions(CategoryScriptableObject category)
         {
             if (2 > category.NumberOfValidQuestions || category.NumberOfValidQuestions > 5)

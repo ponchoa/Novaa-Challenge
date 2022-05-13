@@ -55,12 +55,18 @@ namespace NovaaTest.Mechanics
             }
         }
 
+        /// <summary>
+        /// Starts the Correct Answer animation.
+        /// </summary>
         void StartCorrectAnimation()
         {
             animator.SetBool("IsCorrect", true);
             animator.SetTrigger("OnClick");
         }
 
+        /// <summary>
+        /// Starts the Wrong Answer animation.
+        /// </summary>
         void StartWrongAnimation()
         {
             animator.SetBool("IsCorrect", false);

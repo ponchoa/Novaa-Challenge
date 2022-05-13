@@ -24,6 +24,10 @@ namespace NovaaTest.CustomInspector
             EditorGUI.PropertyField(typeRect, property.FindPropertyRelative("scenetype"), GUIContent.none);
         }
 
+        /// <summary>
+        /// Updates the sceneName property of the SceneStruct to reflect the sceneObject assigned.
+        /// </summary>
+        /// <param name="property">The SceneStruc to update.</param>
         void UpdateCorrectSceneName(SerializedProperty property)
         {
             // We need to update the SceneStruct early to be able to get the scene name.

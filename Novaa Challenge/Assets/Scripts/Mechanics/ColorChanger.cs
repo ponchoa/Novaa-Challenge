@@ -40,22 +40,29 @@ namespace NovaaTest.Mechanics
 
         void SetupImage()
         {
-            if (overrideSprite)
+            if (overrideSprite && image != null)
             {
                 image.sprite = null;
             }
         }
 
         #region Checks
+        /// <summary>
+        /// Checks if there are colors assigned in the inspector.
+        /// </summary>
+        /// <returns>Whether the colors array is properly set.</returns>
         bool CheckForColors()
         {
-            if (colorsArray.Length <= 0)
+            if (colorsArray is null || colorsArray.Length <= 0)
             {
                 Debug.LogWarning($"ColorChanger ({name}) : The colors array is empty.", this);
                 return false;
             }
             return true;
         }
+        /// <summary>
+        /// Checks if the image was properly set in the inspector. Will try to find one in the children if not.
+        /// </summary>
         void CheckImage()
         {
             if (image is null)
@@ -72,7 +79,7 @@ namespace NovaaTest.Mechanics
         /// </summary>
         public void StartColorChange()
         {
-            if (colorCoroutine is null && colorsArray.Length > 0)
+            if (colorCoroutine is null && colorsArray.Length > 0 && image != null)
             {
                 colorCoroutine = StartCoroutine(ColorChangeCoroutine());
             }

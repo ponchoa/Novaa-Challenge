@@ -24,6 +24,9 @@ namespace NovaaTest.Mechanics
         }
 
         #region Checks
+        /// <summary>
+        /// Checks if the button text is correctly referenced in the inspector. Will try to find one if not.
+        /// </summary>
         void CheckButtonTextReference()
         {
             if (buttonText is null)

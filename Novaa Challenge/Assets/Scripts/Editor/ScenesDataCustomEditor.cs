@@ -22,6 +22,10 @@ namespace NovaaTest.CustomInspector
             }
         }
 
+        /// <summary>
+        /// Resyncs the cached scenes names with every Object attached the the ScenesDataScriptableObject.
+        /// </summary>
+        /// <param name="database">The ScenesDataScriptableObject to inspect.</param>
         void ResyncScenesNames(ScenesDataScriptableObject database)
         {
             if (database.scenesData is null)
@@ -38,6 +42,10 @@ namespace NovaaTest.CustomInspector
                 }
             }
         }
+        /// <summary>
+        /// Checks if the scenes are properly assigned in the inspector.
+        /// </summary>
+        /// <param name="database">The ScenesDataScriptableObject to inspect.</param>
         void CheckScenes(ScenesDataScriptableObject database)
         {
             if (database.scenesData is null)

@@ -29,6 +29,10 @@ namespace NovaaTest.Controllers
         }
 
         #region Checks
+        /// <summary>
+        /// Checks whether the current category is properly set.
+        /// </summary>
+        /// <returns>Whether the category is correctly set.</returns>
         bool CheckCategory()
         {
             if (CurrentCategory.Instance.currentCategory is null)
@@ -38,6 +42,9 @@ namespace NovaaTest.Controllers
             }
             return true;
         }
+        /// <summary>
+        /// Checks if the current category was set as available.
+        /// </summary>
         void CheckCategoryState()
         {
             if (!CurrentCategory.Instance.isAvailable)

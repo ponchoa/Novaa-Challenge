@@ -102,6 +102,10 @@ namespace NovaaTest.Controllers
         }
 
         #region Checks
+        /// <summary>
+        /// Checks whether the current category is properly set and has questions assigned.
+        /// </summary>
+        /// <returns>Whether the category is correctly set.</returns>
         bool CheckCategory()
         {
             if (CurrentCategory.Instance.currentCategory is null)
@@ -116,6 +120,9 @@ namespace NovaaTest.Controllers
             }
             return true;
         }
+        /// <summary>
+        /// Checks if the current category was set as available.
+        /// </summary>
         void CheckCategoryState()
         {
             if (!CurrentCategory.Instance.isAvailable)
@@ -123,6 +130,10 @@ namespace NovaaTest.Controllers
                 Debug.LogWarning($"QuizMenuController ({name}) : The current category was set as unavailable. Did you load this scene at the correct time?", this);
             }
         }
+        /// <summary>
+        /// Checks if the answer buttons were properly assigned.
+        /// </summary>
+        /// <returns>Whether the buttons are correctly referenced.</returns>
         bool CheckButtonsReference()
         {
             if (answerButtonsArray.Length <= 0)
@@ -132,6 +143,10 @@ namespace NovaaTest.Controllers
             }
             return true;
         }
+        /// <summary>
+        /// Checks if the raycast blocker was properly assigned.
+        /// </summary>
+        /// <returns>Whether the raycast blocker is correctly referenced.</returns>
         bool CheckRaycastBlocker()
         {
             if (raycastBlocker is null)
@@ -213,7 +228,7 @@ namespace NovaaTest.Controllers
         {
             answerButtonsArray[currentIndex].gameObject.SetActive(true);
             UIButton button = answerButtonsArray[currentIndex].GetComponent<UIButton>();
-            if (button != null)
+            if (button != null && button.ButtonText != null)
                 button.ButtonText = question.answerArray[currentIndex].text;
             // We set the correct listeners depending on if the answer is the correct one.
             if (currentIndex == question.CorrectAnswerIndex)
