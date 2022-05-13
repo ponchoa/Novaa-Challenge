@@ -112,6 +112,15 @@ namespace NovaaTest.Controllers
         }
 
         /// <summary>
+        /// If the player clicks on the Restart button.
+        /// </summary>
+        public void OnClickResetButton()
+        {
+            CurrentCategory.Instance.Clear();
+            GameStateController.Instance?.ResetGame();
+        }
+
+        /// <summary>
         /// If the player clicks on the Share button.
         /// </summary>
         public void OnClickShareButton()
