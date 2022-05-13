@@ -714,6 +714,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880748661}
   m_CullTransparentMesh: 1
+--- !u!1 &958829517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 958829518}
+  - component: {fileID: 958829519}
+  m_Layer: 0
+  m_Name: Quiz Scene Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &958829518
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958829517}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1383380918}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &958829519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958829517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03367df48262cea42ae5f963c937d38f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statementText: {fileID: 625238743}
+  answerButtonsArray:
+  - {fileID: 1528703155}
+  - {fileID: 1794747048}
+  - {fileID: 292416039}
+  - {fileID: 235651815}
+  - {fileID: 1875325552}
+  raycastBlocker: {fileID: 880748662}
+  buttonAnimDuration: 0.4
+  waitBetweenQuestions: 1.6
 --- !u!1001 &970271657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -834,12 +887,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   correctAnswer: {fileID: 0}
   xShakeOffset: 75
+--- !u!1 &971525501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 971525502}
+  m_Layer: 0
+  m_Name: GUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &971525502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971525501}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1447915800}
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1383380917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1383380918}
+  m_Layer: 0
+  m_Name: Management
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1383380918
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383380917}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 958829518}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1447915799
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 971525502}
     m_Modifications:
     - target: {fileID: 771372514246299265, guid: 26a8c1cb00406b446a4f73b4fa1d88bd, type: 3}
       propertyPath: m_Pivot.x
@@ -940,33 +1055,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 771372514246299265, guid: 26a8c1cb00406b446a4f73b4fa1d88bd, type: 3}
   m_PrefabInstance: {fileID: 1447915799}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1447915801 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 771372514246299293, guid: 26a8c1cb00406b446a4f73b4fa1d88bd, type: 3}
-  m_PrefabInstance: {fileID: 1447915799}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1447915802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1447915801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03367df48262cea42ae5f963c937d38f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statementText: {fileID: 625238743}
-  answerButtonsArray:
-  - {fileID: 1528703155}
-  - {fileID: 1794747048}
-  - {fileID: 292416039}
-  - {fileID: 235651815}
-  - {fileID: 1875325552}
-  raycastBlocker: {fileID: 880748662}
-  buttonAnimDuration: 0.4
-  waitBetweenQuestions: 1.6
 --- !u!114 &1528703155 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7194322745140768227, guid: ff745de75f9d6614891a0939d9c970e9, type: 3}

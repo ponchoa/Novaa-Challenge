@@ -17,6 +17,8 @@ namespace NovaaTest.SCObjects
             {
                 if (questionsArray is null)
                     return 0;
+
+                // Unfortunately we can't cache the value found, or it will never change due to Serialization.
                 int res = questionsArray.Length;
                 foreach (QuestionScriptableObject question in questionsArray)
                 {

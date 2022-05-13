@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 namespace NovaaTest.Controllers
 {
+    /// <summary>
+    /// This is a Singleton class that helps loading and unloading UI scenes.
+    /// </summary>
     public class SceneLoaderController : MonoBehaviour
     {
         #region Singleton
@@ -41,17 +44,24 @@ namespace NovaaTest.Controllers
 
         private void Awake()
         {
+            MakeInstance();
             FillScenesMap();
+        }
+
+        void MakeInstance()
+        {
+            if (instance is null)
+                instance = this;
         }
 
         void FillScenesMap()
         {
             //TODO: For now we manually set up the map, but it should be changed.
             scenesMap = new Dictionary<SceneType, string>();
-            scenesMap.Add(SceneType.MAINMENU, mainMenuScene);
-            scenesMap.Add(SceneType.CATEGORIES, categoriesScene);
-            scenesMap.Add(SceneType.QUIZ, quizScene);
-            scenesMap.Add(SceneType.RESULTS, resultsScene);
+            scenesMap.Add(SceneType.MainMenu, mainMenuScene);
+            scenesMap.Add(SceneType.Categories, categoriesScene);
+            scenesMap.Add(SceneType.Quiz, quizScene);
+            scenesMap.Add(SceneType.Results, resultsScene);
         }
 
         /// <summary>
@@ -67,7 +77,7 @@ namespace NovaaTest.Controllers
                 SceneManager.LoadScene(scenesMap[scene], LoadSceneMode.Additive);
                 return true;
             }
-            Debug.LogWarning("SceneLoaderController(" + name + ") : A scene of an unknown type tried to be loaded. Add the corresponding scene type in the controller");
+            Debug.LogWarning($"SceneLoaderController({name}) : A scene of an unknown type tried to be loaded. Add the corresponding scene type in the controller", this);
             return false;
         }
 
@@ -86,10 +96,10 @@ namespace NovaaTest.Controllers
                     SceneManager.UnloadSceneAsync(scenesMap[scene]);
                     return true;
                 }
-                Debug.LogWarning("SceneLoaderController(" + name + ") : The scene \"" + scenesMap[scene] + "\" tried to be unloaded when it wasn't loaded beforehand");
+                Debug.LogWarning($"SceneLoaderController({name}) : The scene \"{scenesMap[scene]}\" tried to be unloaded when it wasn't loaded beforehand", this);
                 return false;
             }
-            Debug.LogWarning("SceneLoaderController(" + name + ") : A scene of an unknown type tried to be unloaded. Add the corresponding scene type in the controller");
+            Debug.LogWarning($"SceneLoaderController({name}) : A scene of an unknown type tried to be unloaded. Add the corresponding scene type in the controller.", this);
             return false;
         }
     }

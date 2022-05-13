@@ -16,13 +16,13 @@ namespace NovaaTest.SCObjects
         /// <summary>
         /// Used to check if the question was correctly set up in the inspector. The question should be skipped if this is false.
         /// </summary>
-        [HideInInspector]
-        public bool isValid = true;
+        public bool isValid { get; set; } = true;
 
         public int CorrectAnswerIndex
         {
             get
             {
+                // Unfortunately we can't cache the value found, or it will never change due to Serialization.
                 for (int i = 1; i < answerArray.Length; i++)
                 {
                     if (answerArray[i].isCorrect)

@@ -44,7 +44,8 @@ namespace NovaaTest.Controllers
                     if (button != null)
                     {
                         button.ButtonText = categories[i].categoryName;
-                        CategoryScriptableObject category = categories[i]; //We have to cache the category for the listener
+                        // We have to cache the category for the listener.
+                        CategoryScriptableObject category = categories[i];
                         if (category != null)
                             buttonGO.GetComponent<Button>()?.onClick.AddListener(() => { OnCategoryButtonClick(category); });
                     }
@@ -57,7 +58,7 @@ namespace NovaaTest.Controllers
         {
             if (categories.Length <= 0)
             {
-                Debug.LogError("CategoriesMenuController(" + name + ") : No categories were listed in the object");
+                Debug.LogError($"CategoriesMenuController({name}) : No categories were listed in the object", this);
                 return false;
             }
             return true;
@@ -66,7 +67,7 @@ namespace NovaaTest.Controllers
         {
             if (categoryButtonPrefab is null)
             {
-                Debug.LogError("CategoriesMenuController(" + name + ") : No button prefab was specified for the categories");
+                Debug.LogError($"CategoriesMenuController({name}) : No button prefab was specified for the categories", this);
                 return false;
             }
             return true;
@@ -75,7 +76,7 @@ namespace NovaaTest.Controllers
         {
             if (verticalLayoutGroup is null)
             {
-                Debug.LogError("CategoriesMenuController(" + name + ") : No vertical layout group was specified for the buttons");
+                Debug.LogError($"CategoriesMenuController({name}) : No vertical layout group was specified for the buttons", this);
                 return false;
             }
             return true;
@@ -87,13 +88,13 @@ namespace NovaaTest.Controllers
         /// The listener that should be set on each button to set up the category container and load the next screen
         /// </summary>
         /// <param name="category">The category that will be saved to correctly set up the quiz</param>
-        public void OnCategoryButtonClick(CategoryScriptableObject category)
+        void OnCategoryButtonClick(CategoryScriptableObject category)
         {
             SetCurrentCategory(category);
             LoadNextScene();
         }
 
-        public void SetCurrentCategory(CategoryScriptableObject category)
+        void SetCurrentCategory(CategoryScriptableObject category)
         {
             CurrentCategory.Instance.currentCategory = category;
             CurrentCategory.Instance.isAvailable = true;
@@ -101,9 +102,9 @@ namespace NovaaTest.Controllers
 
         void LoadNextScene()
         {
-            if (SceneLoaderController.Instance.LoadScene(SceneType.QUIZ))
+            if (SceneLoaderController.Instance.LoadScene(SceneType.Quiz))
             {
-                SceneLoaderController.Instance.UnloadScene(SceneType.CATEGORIES);
+                SceneLoaderController.Instance.UnloadScene(SceneType.Categories);
             }
         }
         #endregion

@@ -29,7 +29,7 @@ namespace NovaaTest.Mechanics
             if (buttonText is null)
             {
                 buttonText = GetComponentInChildren<TextMeshProUGUI>();
-                Debug.LogWarning("CategoryButton (" + name + ") : No text (TMP) reference was set in the inspector. The wrong text might have been found.");
+                Debug.LogWarning($"CategoryButton ({name}) : No text (TMP) reference was set in the inspector. The wrong text might have been found.", this);
             }
         }
         #endregion

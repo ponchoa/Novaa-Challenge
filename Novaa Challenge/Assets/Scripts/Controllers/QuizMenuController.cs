@@ -70,7 +70,7 @@ namespace NovaaTest.Controllers
                 buttonsAnimControllers[i] = answerButtonsArray[i].GetComponent<AnswerButtonAnimation>();
                 if (buttonsAnimControllers[i] is null)
                 {
-                    Debug.LogWarning("QuizMenuController (" + name + ") : No AnswerButtonAnimation component attached to " + answerButtonsArray[i].name + ".");
+                    Debug.LogWarning($"QuizMenuController ({name}) : No AnswerButtonAnimation component attached to {answerButtonsArray[i].name}.", this);
                 }
             }
         }
@@ -82,7 +82,7 @@ namespace NovaaTest.Controllers
         {
             if (CurrentCategory.Instance.currentCategory.questionsArray.Length <= questionIndex)
             {
-                //If the last question was answered, we load the result screen.
+                // If the last question was answered, we load the result screen.
                 LoadResultsScreen();
             }
             else
@@ -109,12 +109,12 @@ namespace NovaaTest.Controllers
         {
             if (CurrentCategory.Instance.currentCategory is null)
             {
-                Debug.LogError("QuizMenuController (" + name + ") : The current category is null.");
+                Debug.LogError($"QuizMenuController ({name}) : The current category is null.", this);
                 return false;
             }
             if (CurrentCategory.Instance.currentCategory.questionsArray is null || CurrentCategory.Instance.currentCategory.questionsArray.Length <= 0)
             {
-                Debug.LogError("QuizMenuController (" + name + ") : The " + CurrentCategory.Instance.currentCategory.categoryName + " category doesn't have any question.");
+                Debug.LogError($"QuizMenuController ({name}) : The {CurrentCategory.Instance.currentCategory.categoryName} category doesn't have any question.", this);
                 return false;
             }
             return true;
@@ -123,14 +123,14 @@ namespace NovaaTest.Controllers
         {
             if (!CurrentCategory.Instance.isAvailable)
             {
-                Debug.LogWarning("QuizMenuController (" + name + ") : The current category was set as unavailable. Did you load this scene at the correct time?");
+                Debug.LogWarning($"QuizMenuController ({name}) : The current category was set as unavailable. Did you load this scene at the correct time?", this);
             }
         }
         bool CheckButtonsReference()
         {
             if (answerButtonsArray.Length <= 0)
             {
-                Debug.LogError("QuizMenuController (" + name + ") : No reference to the answer buttons.");
+                Debug.LogError($"QuizMenuController ({name}) : No reference to the answer buttons.", this);
                 return false;
             }
             return true;
@@ -139,7 +139,7 @@ namespace NovaaTest.Controllers
         {
             if (raycastBlocker is null)
             {
-                Debug.LogWarning("QuizMenuController (" + name + ") : No reference to the raycast blocker.");
+                Debug.LogWarning($"QuizMenuController ({name}) : No reference to the raycast blocker.", this);
                 return false;
             }
             return true;
@@ -152,9 +152,9 @@ namespace NovaaTest.Controllers
         /// </summary>
         void LoadResultsScreen()
         {
-            if (SceneLoaderController.Instance.LoadScene(SceneType.RESULTS))
+            if (SceneLoaderController.Instance.LoadScene(SceneType.Results))
             {
-                SceneLoaderController.Instance.UnloadScene(SceneType.QUIZ);
+                SceneLoaderController.Instance.UnloadScene(SceneType.Quiz);
             }
         }
 
@@ -206,9 +206,9 @@ namespace NovaaTest.Controllers
                 if (0 <= question.CorrectAnswerIndex && question.CorrectAnswerIndex < buttonsAnimControllers.Length)
                 {
                     AnswerButtonAnimation buttonAnim = buttonsAnimControllers[currentIndex]; //We need to cache it so that the listener will work.
-                    //We add the listener
+                    // We add the listener.
                     answerButtonsArray[currentIndex].onClick.AddListener(() => { buttonAnim.OnButtonClick(buttonAnimDuration); });
-                    //We specify the correct answer to each button (See: the summary of correctAnswer)
+                    // We specify the correct answer to each button (See: the summary of correctAnswer).
                     buttonsAnimControllers[currentIndex].correctAnswer = buttonsAnimControllers[question.CorrectAnswerIndex];
                 }
             }
@@ -224,7 +224,7 @@ namespace NovaaTest.Controllers
             UIButton button = answerButtonsArray[currentIndex].GetComponent<UIButton>();
             if (button != null)
                 button.ButtonText = question.answerArray[currentIndex].text;
-            //We set the correct listeners depending on if the answer is the correct one.
+            // We set the correct listeners depending on if the answer is the correct one.
             if (currentIndex == question.CorrectAnswerIndex)
                 answerButtonsArray[currentIndex].onClick.AddListener(OnCorrectAnswerClick);
             else

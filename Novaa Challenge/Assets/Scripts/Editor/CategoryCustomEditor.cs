@@ -27,7 +27,7 @@ namespace NovaaTest.CustomInspector
         }
         void CheckAllQuestionsValidity(CategoryScriptableObject category)
         {
-            if (category.questionsArray is null)
+            if (category.questionsArray is null) // It is null for a few frames when the category is created.
             {
                 return;
             }
@@ -35,11 +35,11 @@ namespace NovaaTest.CustomInspector
             {
                 if (category.questionsArray[i] is null)
                 {
-                    EditorGUILayout.HelpBox("The question at index " + i.ToString() + " is invalid. Please check that you have correctly set it up, as it will be skipped.", MessageType.Warning);
+                    EditorGUILayout.HelpBox($"The question at index {i} is invalid. Please check that you have correctly set it up, as it will be skipped.", MessageType.Warning);
                 }
                 else if (!category.questionsArray[i].isValid)
                 {
-                    EditorGUILayout.HelpBox("The question " + category.questionsArray[i].name + " is invalid. Please check that you have correctly set it up, as it will be skipped.", MessageType.Warning);
+                    EditorGUILayout.HelpBox($"The question {category.questionsArray[i].name} is invalid. Please check that you have correctly set it up, as it will be skipped.", MessageType.Warning);
                 }
             }
         }

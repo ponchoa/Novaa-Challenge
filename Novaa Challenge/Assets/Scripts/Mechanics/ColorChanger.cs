@@ -51,7 +51,7 @@ namespace NovaaTest.Mechanics
         {
             if (colorsArray.Length <= 0)
             {
-                Debug.LogWarning("ColorChanger (" + name + ") : The colors array is empty.");
+                Debug.LogWarning($"ColorChanger ({name}) : The colors array is empty.", this);
                 return false;
             }
             return true;
@@ -60,13 +60,16 @@ namespace NovaaTest.Mechanics
         {
             if (image is null)
             {
-                Debug.LogWarning("ColorChanger (" + name + ") : The image wasn't properly set in the inspector. The wrong image might have been found.");
+                Debug.LogWarning($"ColorChanger ({name}) : The image wasn't properly set in the inspector. The wrong image might have been found.", this);
                 image = GetComponentInChildren<Image>();
             }
         }
         #endregion
 
         #region Coroutine
+        /// <summary>
+        /// Starts the color fade animation from the beginning. Use StopColorChange() to stop it.
+        /// </summary>
         public void StartColorChange()
         {
             if (colorCoroutine is null && colorsArray.Length > 0)
@@ -74,6 +77,9 @@ namespace NovaaTest.Mechanics
                 colorCoroutine = StartCoroutine(ColorChangeCoroutine());
             }
         }
+        /// <summary>
+        /// Stops the color fade animation. Use StartColorChange() to restart it.
+        /// </summary>
         public void StopColorChange()
         {
             if (colorCoroutine != null)

@@ -12,7 +12,7 @@ namespace NovaaTest.Controllers
 
         void LoadMainMenu()
         {
-            SceneLoaderController.Instance.LoadScene(SceneType.MAINMENU);
+            SceneLoaderController.Instance.LoadScene(SceneType.MainMenu);
         }
     }
 }

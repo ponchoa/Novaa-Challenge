@@ -21,7 +21,7 @@ namespace NovaaTest.CustomInspector
 
         void CheckNumberOfAnswers(QuestionScriptableObject question)
         {
-            if (question.answerArray is null) //It is null for a few frames when the question is created
+            if (question.answerArray is null) // It is null for a few frames when the question is created.
                 return;
             if (2 > question.answerArray.Length || question.answerArray.Length > 5)
             {
@@ -31,14 +31,15 @@ namespace NovaaTest.CustomInspector
         }
         void CheckAnswersText(QuestionScriptableObject question)
         {
-            if (question.answerArray is null) //It is null for a few frames when the question is created
+            if (question.answerArray is null) // It is null for a few frames when the question is created.
                 return;
             for (int i = 0; i < question.answerArray.Length; i++)
             {
-                bool shouldBreak = false; //This flag avoids displaying the same warning multiple times in the inspector
+                // This flag avoids displaying the same warning multiple times in the inspector.
+                bool shouldBreak = false;
                 if (string.IsNullOrWhiteSpace(question.answerArray[i].text))
                 {
-                    EditorGUILayout.HelpBox("The answer at index " + i.ToString() + " is empty", MessageType.Error);
+                    EditorGUILayout.HelpBox($"The answer at index {i} is empty", MessageType.Error);
                     question.isValid = false;
                 }
                 else

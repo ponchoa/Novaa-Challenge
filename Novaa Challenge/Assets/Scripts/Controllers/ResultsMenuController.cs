@@ -28,12 +28,12 @@ namespace NovaaTest.Controllers
             DisplayResults();
         }
 
-        #region Warnings
+        #region Checks
         bool CheckCategory()
         {
             if (CurrentCategory.Instance.currentCategory is null)
             {
-                Debug.LogError("ResultsMenuController (" + name + ") : The current category is null.");
+                Debug.LogError($"ResultsMenuController ({name}) : The current category is null.", this);
                 return false;
             }
             return true;
@@ -42,7 +42,7 @@ namespace NovaaTest.Controllers
         {
             if (!CurrentCategory.Instance.isAvailable)
             {
-                Debug.LogWarning("ResultsMenuController (" + name + ") : The current category was set as unavailable. Did you load this scene at the correct time?");
+                Debug.LogWarning($"ResultsMenuController ({name}) : The current category was set as unavailable. Did you load this scene at the correct time?", this);
             }
         }
         #endregion
@@ -66,7 +66,7 @@ namespace NovaaTest.Controllers
         /// <param name="correctPercent">The percentage of correct answers over the total amount</param>
         void SetRankingAndColor(float correctPercent)
         {
-            //Different rankings with different colors and comments
+            // Different rankings with different colors and comments.
             if (correctPercent < .5f)
             {
                 colorText = "FF0000";
@@ -90,10 +90,7 @@ namespace NovaaTest.Controllers
         /// <param name="totalAnswers">The total possible amount of good answers for this category</param>
         void DisplayAmountText(int correctAnswers, int totalAnswers)
         {
-            amountText.text = "You got\n";
-            amountText.text += "<color=#" + colorText + ">";
-            amountText.text += correctAnswers.ToString() + " / ";
-            amountText.text += totalAnswers.ToString();
+            amountText.text = $"You got\n<color=#{colorText}>{correctAnswers} / {totalAnswers}";
         }
         #endregion
 
@@ -103,10 +100,11 @@ namespace NovaaTest.Controllers
         /// </summary>
         public void OnClickBackButton()
         {
-            if (SceneLoaderController.Instance.LoadScene(SceneType.CATEGORIES))
+            if (SceneLoaderController.Instance.LoadScene(SceneType.Categories))
             {
-                CurrentCategory.Instance.Clear(); //We clear the current category container to prepare for the next set of questions.
-                SceneLoaderController.Instance.UnloadScene(SceneType.RESULTS);
+                // We clear the current category container to prepare for the next set of questions.
+                CurrentCategory.Instance.Clear();
+                SceneLoaderController.Instance.UnloadScene(SceneType.Results);
             }
         }
 
@@ -115,7 +113,7 @@ namespace NovaaTest.Controllers
         /// </summary>
         public void OnClickShareButton()
         {
-            //TODO: Share activity
+            // TODO: Share activity
         }
         #endregion
     }

@@ -24,18 +24,26 @@ namespace NovaaTest.Mechanics
         /// <summary>
         /// A universal reference to the current loaded category.
         /// </summary>
-        [HideInInspector]
-        public CategoryScriptableObject currentCategory;
+        public CategoryScriptableObject currentCategory { get; set; }
         /// <summary>
         /// A universal boolean that governs if the current category is coherent with the game state
         /// </summary>
-        [HideInInspector]
-        public bool isAvailable;
+        public bool isAvailable { get; set; }
         /// <summary>
         /// The amount of correct answers the player got during his play of this category
         /// </summary>
-        [HideInInspector]
-        public int correctAnswers;
+        public int correctAnswers { get; set; }
+
+        private void Awake()
+        {
+            MakeInstance();
+        }
+
+        void MakeInstance()
+        {
+            if (instance is null)
+                instance = this;
+        }
 
         /// <summary>
         /// Used to reset the container to prepare for the next play.
