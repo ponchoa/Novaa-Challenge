@@ -22,6 +22,8 @@ namespace NovaaTest.CustomInspector
                 UpdateCorrectSceneName(property);
             }
             EditorGUI.PropertyField(typeRect, property.FindPropertyRelative("scenetype"), GUIContent.none);
+
+            EditorGUI.EndProperty();
         }
 
         /// <summary>
